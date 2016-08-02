@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<meta name="author" content="Emilio Pinna">
+<meta name="description" content="rough networking, insecurities and dirty sources">
+<meta name="generator" content="mynt v0.2.2">
+
+<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+<link rel="alternate" href="http://feeds.feedburner.com/Dissecting">
+
+<link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-6880213-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+<script type="text/javascript">
+lloogg_clientid = "93002008a618daf";
+</script>
+<script type="text/javascript" src="http://lloogg.com/l.js?c=93002008a618daf">
+</script>
+
+<script src="http://disse.cting.org/scripts/jquery-1.7.2.min.js"></script>
+<script src="http://disse.cting.org/scripts/jquery.dissecting.text-animations.js"></script>
+<script src="/codes/alice.js"></script>
+
+<script>
+
+$('#title').ready(function () {
+        $('#title').randomScramble();
+	$('#title').click(function () {
+		$('#title').randomScramble();
+	});
+});
+
+</script>
+
+
+    <title>POC of Alice Gate VoIP 2 Plus Wifi and ADSL2+ WiFi-N AGPWI CRSF reconfiguration</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/apps/">Codes</a></li>
+                <li><a href="https://github.com/epinna/advisories">Advisories</a></li>
+                <li><a href="http://feeds.feedburner.com/Dissecting">Feed</a></li>
+            </ul>
+            
+
+            
+                <ul id="social">
+                    
+                    
+                    <li><a href="https://github.com/epinna"><img src="/assets/images/social/github.png" width="16" height="16" alt="GitHub"></a></li>
+                    
+                    
+                    <li><a href="http://stackoverflow.com/users/39796"><img src="/assets/images/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow"></a></li>
+                    
+                    <li><a href="https://twitter.com/#!/norbemi"><img src="/assets/images/social/twitter.png" width="16" height="16" alt="Twitter"></a></li>
+                </ul>
+            
+ 
+		<!-- Begin TranslateThis Button -->
+
+		<div id="translate-this"><a style="width:180px;height:18px;display:block;" class="translate-this-button" href="http://translateth.is/">Translate</a></div>
+		<script type="text/javascript" src="http://x.translateth.is/translate-this.js"></script>
+		<script type="text/javascript">
+		TranslateThis({ noBtn : true });
+		</script>
+
+		<!-- End TranslateThis Button -->
+
+
+        </div>
+
+       
+        <div id="header">
+            <h1 id="title">Dissecting</h1>
+            <h2>rough networking, insecurities and dirty sources</h2>
+        </div>
+
+        <div id="content">
+            
+    <div class="item">
+        <div class="header">
+
+	<h1>POC of Alice Gate VoIP 2 Plus WiFi and ADSL2+ WiFi-N AGPWI reconfiguration</h1>
+
+            <blockquote>
+<p>Questo dimostratore fa parte della serie di articoli sulla vulnerabilità CSRF dei router <a href="/tags/alice/">Alice</a>, leggi l&#39;<a href="/2012/09/02/alice-gate-agpf-csrf-reconf-vulnerability/">articolo introduttivo</a>.</p>
+<p>Aggiornamento 12/2012: La vulnerabilità CSRF è stata mitigata abilitando la richiesta di password per accedere al pannello di amministrazione. La tecnica per sbloccare le funzionalità nascoste del proprio router rimane comunque valida.</p>
+</blockquote> 
+
+<blockquote class="blockwarn"><p><strong>Attenzione: le modifiche alla configurazione interna del router Alice Gate VoIP 2 Plus Wifi potrebbero essere vietate dal contratto stipulato con il provider, e apportare danni al router rendendolo inutilizzabile. Prima di effettuare qualsiasi modifica assicurarsi di saper ripristinare le impostazioni iniziali. Esegui i test dimostrativi a tuo rischio e pericolo.</strong></p> <p>Lo studio sulla sicurezza dell'apparato è da intendersi a scopo didattico. Verificate la sicurezza del vostro router e proteggetelo utilizzando il <a href="{{ base_url }}/codes/alice.html">dimostratore</a> pubblicato. L'autore non è responsabile di danni agli apparati o violazioni a sistemi informatici derivanti dall'uso delle tecniche esposte. Ricordo che l'accesso abusivo ad un sistema informatico e perseguibile secondo l'articolo 615-ter del codice penale.
+</p></blockquote>
+
+
+        </div>
+        
+        <div class="body">
+
+<h1> Verifica se il tuo router è vulnerabile </h1>
+<p>
+
+
+<h3> Controlla il modello </h3>
+<p>
+<ol>
+<li>Accedi al pannello di controllo sulla pagina <a href="http://192.168.1.1/">http://192.168.1.1/</a></li>
+<li>Verifica che il modello del router sia <code>AGPF</code> oppure <code>AGPWI</code> nel campo <code>Dati Identificativi Modem &gt; Software</code>
+<p><img src="/assets/images/pannello1.png" alt="Pannello"></p>
+</li>
+</ol>
+</p>
+
+<h3> Simula attacco CSRF </h3>
+<ol>
+<li>Segnati il <code>Seriale modem</code> che trovi nella sezione nella immagine soprastante (la disposizione potrebbe cambiare)</li>
+<li>Clicca <a href="/codes/alice2.html" target="_blank">qui</a> per aprire una pagina di attacco che modifica la voce <code>Seriale modem</code> </li>
+<li>Se <code>Seriale modem</code> è modificato come nell'immagine sottostante, <strong>il tuo router è vulnerabile</strong>. Vai alla sezione <a href="#mitigazione">mitiga vulnerabilità</a>
+<p><img src="/assets/images/pannello2.png" alt="Pannello modificato"></p>
+</li>
+<li>Ripristina il precedente numero seriale del modem, o sostituiscilo con una stringa a tuo piacere
+<p>
+<!--
+<BUTTON onclick="do_cross_requests('verify', get_value_str('verify','ROUTER VULNERABILE', 'verify_txt'))">Sovrascrivi campo</BUTTON> 
+<input value="SCRIVI QUI IL SERIALE" id="verify_txt" />
+-->
+
+
+<BUTTON onclick="do_cross_requests('verify', get_validated_value('verify','ROUTER VULNERABILE', 'verify_txt',/^[0-9a-zA-Z ]+$/))">Sovrascrivi campo</BUTTON>
+<input value="SCRIVI QUI IL SERIALE" id="verify_txt" />
+
+</p>
+</li>
+<li>Verifica che la voce alla pagina <a href="http://192.168.1.1/">http://192.168.1.1/</a> sia stata modificata</li>
+</ol>
+
+
+<p>
+Il dimostratore è stato provato ufficialmente sulle versioni firmware <code>AGPWI_1.0.3</code>, <code>AGPF_4.3.5a</code>, <code>AGPF_4.5.0</code>, <code>AGPF_4.6.2</code>. E' possibile che il metodo vari tra le versioni non ancore testate: se non funziona su un router con versione diversa contattami per adattare il POC. L'accesso alla interfaccia web deve essere senza login, come da default. In caso contrario, i test dimostrativi non hanno effetto se non autenticati all'interfaccia.
+</p>
+</p>
+
+
+
+<h1 name="#mitigazione"> Mitiga la vulnerabilità </h1>
+<p>
+In attesa che il distributore rilasci una versione di firmware non vulnerabile, possiamo applicare alcune configurazioni che riducono la possibilità di subire un attacco. 
+</p>
+<h3> Autenticazione utente </h3>
+<ol>
+<li>Accedi al pannello di controllo sulla pagina <a href="http://192.168.1.1/">http://192.168.1.1/</a></li>
+<li>Clicca sull'ultimo bottone <code>Accesso</code> sul menu sulla destra</li>
+<li>Attiva la gestione autenticazione utente, e inserisci la password quando richiesta </li>
+</ol>
+<p>
+Da ora in poi verrà chiesta la password di autenticazione ad ogni accesso, rendendo l'utente vulnerabile al CSRF solo quando loggato all'interno della interfaccia web. Avendo l'accortezza di non navigare su altre pagine web nel mentre che si ha una sessione attiva sul pannello di controllo del proprio router, e di effettuare il logout a fine operazioni, si evita ogni possibile attacco CSRF.
+</p>
+
+<h3> Cambia porta del pannello di controllo </h3>
+Cambiare la porta su cui è esposta l'interfaccia web a proprio piacimento, limita la vulnerabilità all'attacco CSRF.
+<ol>
+<li>Cambia la porta su cui è esposta l'interfaccia web. <strong>Attenzione: successivamente la pagina sarà accessibile solo digitando l'URL <em>http://192.168.1.1:nuovaporta</em>. Data la limitazione, tutte le dimostrazioni e sblocchi spiegati nei paragrafi successivi non funzioneranno.</strong></li>
+<p>
+
+
+<BUTTON onclick="do_cross_requests('http_port', get_validated_value('http_port','80', 'port_txt',/^(6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3}|0)$/))">Cambia porta</BUTTON>
+<input value="SCRIVI QUI LA NUOVA PORTA TRA 1 e 65535" id="port_txt" />
+
+</p>
+</ol>
+
+Se si desidera ripristinare l'accesso sulla porta 80, continuare con i punti successivi. Il router sarà di nuovo a rischio.
+
+<ol>
+<li>Abilita la porta telnet come spiegato nel <a href="#telnet">paragrafo</a></li>
+<li>Apri il client telnet e collegarsi alla porta <em>23</em> dell'host <em>192.168.1.1</em></li>
+<li>Accedi alla shell con username <em>admin</em> e password <em>riattizzati</em></li>
+<li>Esegui il comando <code>conf set admin/https/ports/0/port 80</code></li>
+<li>Esegui il comando <code>conf reconf 4</code></li>
+<li>Verifica che il pannello di controllo alla pagina <a href="http://192.168.1.1/">http://192.168.1.1/</a> sia stato ripristinato</li>
+</ol>
+</p>
+
+
+<h1> Sblocca le funzionalità nascoste </h1>
+<p>
+<h3> Menu avanzato </h3>
+Abilita e disabilita il menu avanzato del pannello di controllo accessibile da <a href="http://192.168.1.1/admin.html">admin.html</a>.
+<ol>
+</li>
+<li>Abilita e disabilita il menù avanzato
+<p>
+<BUTTON onclick="do_cross_requests('menu_enable')">Abilita menu avanzato</BUTTON> 
+<BUTTON onclick="do_cross_requests('menu_disable')">Disabilita menu avanzato</BUTTON> 
+</p>
+</li>
+<li>Connettiti alla pagina di amministrazione <a href="http://192.168.1.1/admin.html">admin.html</a>.</li>
+<li>Al posto della pagina <em>404 page not found</em> dovresti trovare un pannello di autenticazione dove inserire utente <em>admin</em> e password <em>riattizzati</em></li>
+<li>Naviga le funzioni nascoste</li>
+</ol>
+
+
+<h3 name="#telnet"> Telnet </h3>
+
+Abilita e disabilita il telnet sulla porta 23. 
+<ol>
+<li>Abilita e disabilita il menù avanzato
+<p>
+<BUTTON onclick="do_cross_requests('telnet_enable')">Abilita telnet</BUTTON> 
+<BUTTON onclick="do_cross_requests('telnet_disable')">Disabilita telnet</BUTTON> 
+</p>
+</li>
+<li>Apri il client telnet e collegarsi alla porta <em>23</em> dell'host <em>192.168.1.1</em></li>
+<li>Accedi alla shell con username <em>admin</em> e password <em>riattizzati</em></li>
+</ol>
+
+<h3> Telegestione </h3>
+
+Abilita e disabilita la telegestione per l'aggiornamento automatico del software e la gestione remota da parte di telecom via CWMP. La funzione è abilitata di default, disabilitarla se si vuole evitare upgrade, fix e cancellazioni delle personalizzazioni dell'apparato.  
+<ol>
+<li>Abilita e disabilita la telegestione
+<p>
+<BUTTON onclick="do_cross_requests('cwmp_enable')">Abilita telegestione</BUTTON> 
+<BUTTON onclick="do_cross_requests('cwmp_disable')">Disabilita telegestione</BUTTON> 
+</p>
+</li>
+</ol>
+</p>
+
+<h1> Simula attacchi </h1>
+<p>
+<h3> DNS entry </h3>
+Inserisci una nuova DNS entry nel router. Dopo, l'hostname scelto verrà risolto con l'IP di questo blog.
+
+<ol>
+<li>Inserisci la entry DNS
+<p>
+
+<BUTTON onclick="do_cross_requests('dns_append', get_validated_value('dns_append','www.google.it', 'host_txt',/^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$/))">Aggiungi DNS da risolvere con l'IP di questo blog (109.168.126.241)</BUTTON>
+<input value="Host (ad esempio www.google.it)" id="host_txt" />
+
+</p>
+</li>
+</ol>
+
+Per ripristinare il comportamento corretto, continuare con i punti successivi. 
+
+<ol>
+<li>Abilita la porta telnet come spiegato nel <a href="#telnet">paragrafo</a></li>
+<li>Apri il client telnet e collegarsi alla porta <em>23</em> dell'host <em>192.168.1.1</em></li>
+<li>Accedi alla shell con username <em>admin</em> e password <em>riattizzati</em></li>
+<li>Esegui il comando <code>conf print dns/entry</code></li>
+<li>Trova il record DNS inserito e cancellala con il comando <code>conf del dns/entry/#</code> con <code>#</code> numero della entry da cancellare</li>
+<li>Verifica che <a href="http://www.google.it">google</a> venga risolto in maniera corretta</li>
+</ol>
+
+<h3> Telnet esposto su internet </h3>
+
+Apri il telnet verso internet su una porta a scelta. Attenzione: ogni click inserisce una nuova entry telnet da cancellare a test completato.
+
+<ol>
+<li>Abilita la porta telnet generica come spiegato nel <a href="#telnet">paragrafo</a></li>
+<li>Esporre la porta desiderata verso l'esterno
+<p>
+<BUTTON onclick="do_cross_requests('telnet_external', get_validated_value('telnet_external','23322', 'ext_port_txt',/^(6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3}|0)$/))">Cambia porta</BUTTON>
+<input value="SCRIVI QUI LA PORTA TRA 1 e 65535" id="ext_port_txt" />
+
+</p>
+</li>
+</ol>
+
+Per richiudere il telnet, continuare con i punti successivi. 
+
+<ol>
+<li>Apri il client telnet e collegarsi alla porta <em>23</em> dell'host <em>192.168.1.1</em></li>
+<li>Accedi alla shell con username <em>admin</em> e password <em>riattizzati</em></li>
+<li>Esegui il comando <code>conf print admin/telnets/ports</code></li>
+<li>Trova la entry della porta appena inserita e cancellala con il comando <code>conf del admin/telnets/ports/#</code> con <code>#</code> numero della entry che desideramo cancellare. 
+</ol>
+
+
+</p>
+
+
+
+
+
+
+
+
+
+<iframe name="hiddenframe" src="" width=10 height=10 style="visibility: hidden"></iframe>
+
+
+
+
+        </div>
+<p>
+<h1>Comments</h1>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'dissecting'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+    </div>
+
+<p>
+
+        
+        <div id="footer">
+
+            <p id="share">
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({publisher: "ur-50db4c9c-b696-4c5a-8fa3-cbfe3d502747"}); </script>
+
+
+		<span class='st_sharethis_large' displayText='ShareThis'></span>
+		<span class='st_facebook_large' displayText='Facebook'></span>
+		<span class='st_googleplus_large' displayText='Google +'></span>
+		<span class='st_twitter_large' displayText='Tweet'></span>
+		<span class='st_linkedin_large' displayText='LinkedIn'></span>
+		<span class='st_email_large' displayText='Email'></span>
+	    </p>
+            <p id="licence">
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a> <br/>2012 &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+
+
+
+
+        </div>
+    </div>
+</body>
+
+
+</html>

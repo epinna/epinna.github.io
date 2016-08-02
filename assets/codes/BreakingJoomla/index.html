@@ -1,0 +1,490 @@
+<!doctype html>
+
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Breaking Joomla! | by Emilio PInna</title>
+    
+    <meta name="description" content="Breaking Joomla!, a presentation for the Italian Joomla! Day 2013" />
+    <meta name="author" content="Emilio Pinna" />
+
+    <link href="css/breaking.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <script src="js/canvasjs.min.js"></script>
+
+	<script>
+
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("compromessi",
+    {
+      backgroundColor: "transparent",
+      legend:{
+        verticalAlign: "center",
+        horizontalAlign: "left",
+        fontSize: 20,
+        fontFamily: "Helvetica"        
+      },
+      theme: "theme3",
+      data: [
+      {        
+       type: "doughnut",       
+       indexLabelFontFamily: "Helvetica",       
+       indexLabelFontSize: 20,
+       startAngle:-20,      
+       showInLegend: true,
+       toolTipContent:"{label}",
+       dataPoints: [
+       {  y: 61, legendText:"Altri", label: "Altri 61%" },
+       {  y: 27, legendText:"Wordpress", label: "Wordpress 27%" },
+       {  y: 9, legendText:"Joomla!", label: "Joomla! 9%", exploded: true },
+       {  y: 2, legendText:"OSCommerce" , label: "OSCommerce 2%"},       
+       {  y: 1, legendText:"Drupal" , label: "Drupal 1%"}
+       ]
+     }
+     ]
+   });
+
+    chart.render();
+  }
+ 
+	</script>
+
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+    <div id="breaking" class="step" data-x="0" data-y="0" data-z="0" data-scale="10" >
+        <p div class="big">Breaking</p>
+        <p class="huge">Joomla!</p>
+	<p class="small left">Joomla Day 2013, Napoli</p>
+	<p class="small right">Emilio Pinna 2013 &nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+
+    <div id="me" class="step hidden" data-x="0" data-y="20" data-rotate="90" data-scale="10" >
+	    <img src="img/businness.png" />
+    </div>
+
+    <div id="perche-attaccano" class="step compact-title" data-x="0" data-y="9000" data-rotate="90" data-scale="10">
+        <p class="huge">Perchè</p>
+        <p>Attaccano il mio sito?</p>
+    </div>
+
+    <div id="perche-attaccano-2" class="step" data-x="0" data-y="14000" data-rotate="0" data-scale="5">
+	<p> Siti vulnerabili facili da localizzare </p>
+              <ul>
+                <li class="substep">Scanner automatici e worms scandagliano continuamente la rete alla ricerca di vulnerabilità</li>
+                <li class="substep">Ma spesso basta anche una query su google<p><img src="img/com_vulnerabile.png"/></p></li>
+              </ul>
+    </div>
+
+    <div id="chi-attacca" class="step compact-title" data-x="-1500" data-y="14000" data-rotate="0" data-scale="17">
+        <p class="huge">Chi</p>
+        <p>Attacca il mio sito?</p>
+    </div>
+
+
+    <div id="cracker-def" class="step" data-x="4000" data-y="17000" data-rotate="0" data-scale="10">
+        <p><b>Cracker</b> s.m.</p>
+	<p class="descr">/ˈkrækə(r)/</p>
+        <p class="descr">Colui che si ingegna per eludere le protezioni di un sistema informatico allo scopo di trarne profitto.</p>
+    </div>
+
+    <div id="skiddie" class="step profili" data-x="7400" data-y="21000" data-rotate="90" data-scale="5">
+        <b>Script kiddie</b><img src="img/time.svg"/>
+	     <ul>
+		<li><b>Attacchi:</b> web defacement, dos, database leaks</li>
+		<li><b>Tecniche:</b> vulnerabilità note, phishing</li>
+		<li><b>Motivazioni:</b> sfida personale, <em>trolling</em>, autoaffermazione in subculture di internet, hacktivism</li>
+	      </ul>
+    </div>
+
+    <div id="hacker" class="step profili" data-x="5800" data-y="21000" data-rotate="90" data-scale="5">
+
+        <p><b>Ethical Hacker</b><img src="img/time.svg"/><img src="img/magic.svg"/></p>
+ 	     <ul>
+		<li><b>Tecniche:</b> ricerca nuove vulnerabilità, penetration test, OWASP, OSSTMM</li>
+		<li><b>Motivazioni:</b> sfida personale, autoaffermazione in ambienti di ricerca</li>
+	      </ul>       
+     </div>
+
+    <div id="cracker" class="step profili" data-x="4000" data-y="21000" data-rotate="90" data-scale="5">
+	<p><b>Cracker</b><img src="img/time.svg"/><img src="img/magic.svg"/><img src="img/coin.svg"/></p>
+	     <ul>
+		<li><b>Attacchi:</b> mirati e persistenti, distribuzione di malware e spam, furto di beni e servizi, sabotaggio e spionaggio industriale</li>
+		<li><b>Tecniche:</b> ricerca nuove vulnerabilità, commercio 0day, ingegneria sociale</li>
+		<li><b>Motivazioni:</b> ritorno economico, sfida personale, hacktivism</li>
+	      </ul>       
+     </div>
+
+
+    <div id="joomla-vulnerabile" class="step compact-title" data-x="15000" data-y="4500" data-rotate="0" data-scale="10">
+        <p class="huge">Joomla</p>
+        <p>è vulnerabile?</p>
+    </div>
+
+
+    <div id="serving-malware" class="step" data-x="17500" data-y="6700" data-rotate="90" data-scale="2">
+	<p class="centered">Cms compromessi </p>
+	<div id="compromessi"></div>
+	<p class="tiny">Fonte: <a href="http://www.stopbadware.org/pdfs/compromised-websites-an-owners-perspective.pdf">StopBadware - Compromised Websites</a> 2011-2012</p>
+<!--
+Correlating the percentages in the pie chart with CMS penetration data from
+w3techs.com paints WordPress in a better light. Although WordPress represents 54%
+of known CMSs, it only featured in 28% of the hacks. Joomla, Blogspot and
+osCommerce on the other hand show direct correlations to their installed base.
+-->
+    </div>
+
+    <div id="massa" class="step" data-x="16500" data-y="6700" data-rotate="90" data-scale="2">
+        <p>Massa critica</p>
+	<p class="small">Oltre 35 milioni di download</p> 
+    </div>
+
+
+    <div id="facilita" class="step" data-x="15500" data-y="6700" data-rotate="90" data-scale="2">
+        <p>Compromesso tra facilità d'uso, estensione e sicurezza</p>
+	<p class="small">A portata di utenti senza particolari conoscenze tecniche</p> 
+    </div>
+
+    <div id="joomla-security" class="step" data-x="14500" data-y="7100" data-rotate="90" data-scale="3">
+        <p class="huge left">Security</p>
+    </div>
+
+    <div id="core" class="step" data-x="13500" data-y="7700" data-rotate="90" data-scale="1.7">
+        <p class="huge">Core</p>
+	      <ul>
+		<li>Cuore della applicazione web Joomla</li>
+		<li class="substep">Sicuro e robusto</li>
+		<li class="substep">Espone API robuste per sviluppare estensioni</li>
+		<li class="substep">Gestisce utenze, permessi, Access Control List</li>
+	      </ul>
+    </div>
+
+
+    <div id="extensions" class="step" data-x="12500" data-y="7700" data-rotate="90" data-scale="1.7">
+        <p class="not-so-huge">Estensioni</p>
+	      <ul>
+		<li>Software aggiuntivo sviluppato da terze parti</li>
+		<li class="substep">Circa 7000 estensioni disponibili</li>
+		<li class="substep">Spesso non utilizzano le API di Joomla in maniera corretta</li>
+	      </ul>
+    </div>
+
+
+    <div id="jsst" class="step" data-x="11400" data-y="7700" data-rotate="90" data-scale="1.7">
+        <p class="huge">JSST</p>
+	      <ul>
+		<li>Joomla! Security Strike Team</li>
+		<li class="substep">Istituito nel 2008</li>
+		<li class="substep">Code review di ogni main release del Core</li>
+		<li class="substep">Buoni tempi di risposta a segnalazioni di vulnerabilità sul Core</li>
+		<li class="substep">Estensioni non revisionate</li>
+		<li class="substep">Mantenimento della Vulnerable Extension List</li>
+	      </ul>
+    </div>
+
+<!--
+
+"Core code" the modules you get when you download/install Drupal or Joomla, as developed by the team.
+terrific and very secure, and and both core development teams have good response times to reported security flaws
+We have a body called the JSST (Joomla Security Strike Team), and members of that performed a security review OF JOOMLA 1.6 before we released it.
+
+Third-party extensions  add-ons written by Drupal/Joomla developers, made available to others (either free or for a price, depending), typically through central directories
+- Not using APIs properly
+- Joomla has security features like a database class smart enough to check that when you pass data to it, the data is properly sanitized. But if you hard-code their connections to the database instead, without doing any checking or sanitizing, you're introducing vulnerabilities.
+- The Drupal security team does not proactively evaluate all of the modules  currently around 8,000. They do monitor modules being posted, and look at bug reports and responses for the core modules and the add-ons.
+- Drupal, you get a limited number of extensions where it's possible to control releases and vet for security issues. With Joomla, just about anyone can write an extension. With 6000+ 
+-We  the Joomla teams are forced into a reactive approach. The Vulnerable Extensions List (VEL)
+
+Custom per-site coding  done by design firms and other developers (who might also be the "customer")
+
+Admin configuration and other settings  setting access permissions for groups, users, articles, etc.
+ Access Control List (ACL) mechanism, to define and control how much access editors, content creators and others do
+
+Your site doesn't get  or stay secure by itself
+
+
+-->
+
+<!--
+2011-2012-2013
+
+{'CSRF': 0,
+ 'ClickJacking': 2,
+ 'Command execution': 0,
+ 'File upload': 4,
+ 'Information disclosure': 19,
+ 'NONE': 7,
+ 'Object Injection': 1,
+ 'Privilege bypass': 2,
+ 'SQL injection': 14,
+ 'XSS': 26}
+
+XSS: 26 24,6%
+SQL injection: 14 18,5%
+File Upload: 4 5,3%
+Info disclosure: 19 25,3%
+Altri: 2 + 7 + 1 + 2 = 12 16,2%
+
+-->
+
+    <div id="logojoomla" class="step visible imagesized" data-x="20000" data-y="15000" data-rotate="0" data-scale="20" >
+	    <img src="img/logo_vuln.png" />
+    </div>
+
+
+    <div id="XSS" class="step centered visible" data-x="15300" data-y="13600" data-rotate="0" data-scale="20">
+	<p>XSS<span class="tiny"> 34,6%</span></p>
+    </div>
+
+    <div id="XSS-vuln" class="step" data-x="15100" data-y="14900" data-rotate="0" data-scale="3">
+	  <p class="small">La applicazione web riceve dal browser utente dei dati che restituisce allo stesso senza prima validarli e ripulirli</p>
+    </div>
+
+    <div id="XSS-forge" class="step" data-x="15800" data-y="15600" data-rotate="90" data-scale="1">	
+	<ul>
+	  <li>Se un parametro di una richiesta HTTP viene riflesso sulla pagina restituita<img src="img/xss1.1.png" /></li>
+	  <li class="substep">L'attaccante prepara un indirizzo allo scopo di iniettare codice HTML e Javascript nel browser di chi vi accede<img src="img/xss1.png" /><img src="img/xss2.png" /></li>
+	</ul>
+    </div>
+
+    <div id="XSS-attacks" class="step" data-x="15300" data-y="15600" data-rotate="90" data-scale="1">
+        <p>Attacchi</p>
+	<ul>
+	  <li>Session hijacking (furto cookie)</li>
+	  <li>Phishing (sostitizione di form di login)</li>
+	  <li>Redirezione verso siti malevoli (malware, exploiting)</li>
+	  <li>Attacco Man-In-The-Browser</li>
+	</ul>
+    </div>
+
+    <div id="XSS-session-hijacking" class="step imagesized" data-x="14600" data-y="15600" data-rotate="90" data-scale="1">
+        <p>Session Hijacking <span class="small">Mallory attacca Alice</span></p>
+	<ul>
+          <li class="substep">1. M. prepara una richiesta XSS che inietti Javascript allo scopo di inviare i cookie di sessione a un proprio server in ascolto<p><img src="img/xss3.png" /></p></li>
+	  <li class="substep">2. M. invita l'amministratore A. in quel momento autenticata sul sito, a visitare l'indirizzo<p class="imagereduced"><img src="img/xss4.png" /></p></li>
+	  <li class="substep">3. A. clicca il link e il browser esegue il Javascript malevolo che invia i cookie di sessione alla macchina di M.</li>
+	  <li class="substep">4. M. utilizza i cookie rubati ad A. per accedere come amministratore senza conoscerne la password<img src="img/xss5.png"></li>
+	</ul> 
+    </div>
+
+
+    <div id="XSS-disclosures" class="step" data-x="14050" data-y="15600" data-rotate="90" data-scale="1">
+	<p>XSS disclosures</p>
+
+	<ul class="small">
+	  <li>2013-3267: Serialized XSS nel Core Highlight Plugin &lt;=v2.5.10&&lt;=v3.0.4</li>
+	  <li>2013-5583: XSS nelle librerie del Core idna_convert v3.1.5</li>
+          <li>2013-3059: XSS nel Core Voting Plugin &lt;=v2.5.9&&lt;=v3.0.2</li>
+          <li>2012-5455: XSS nel Core language search &lt;=3.0.1</li>
+          <li>...</li>
+	</ul>
+
+    </div>
+
+    <div id="info-disclosure" class="step centered visible" data-x="24300" data-y="11800" data-rotate="0" data-scale="12">
+	<p><span class="small">Info </span>Disclosure <span class="small">25,3%</span></p>
+    </div>
+
+    <div id="info-disclosure-vuln" class="step" data-x="26100" data-y="14000" data-rotate="90" data-scale="3">
+	<p class="small">La applicazione web rivela informazioni di sistema o di debug che possono aiutare l'attaccante a formulare un piano d'attacco</p>
+    </div>
+
+    <div id="info-disclosure-path-disclosure" class="step imagesized" data-x="24800" data-y="13000" data-rotate="0" data-scale="1.2">
+	Full path disclosure
+        <img src="img/infodisclosure1.png" />
+	<ul class="small">
+	  <li>2012-3829: Path disclosure nel Core via HTTP header v2.5.3</li>
+	  <li>2012-0837: Installation path disclosure nel Core v2.5.0</li>
+          <li>...</li>
+	</ul>
+    </div>
+
+
+    <div id="info-disclosure-info-leakage" class="step imagesized" data-x="24800" data-y="13500" data-rotate="0" data-scale="1.2">
+	Sensitive information leakage
+        <img src="img/infodisclosure2.png" />
+	<ul class="small">
+	  <li>2013-1453: Serialized Info Disclosure nel Core Highlight Plugin &lt;=v2.5.8&&lt;=v3.0.2</li>
+	  <li>2012-1599: Back end Info Disclosure nel Core &lt;=v1.5.x</li>
+          <li>...</li>
+	</ul>
+    </div>
+
+    <div id="sqli" class="step centered visible" data-x="23700" data-y="14000" data-rotate="0" data-scale="12">
+	<p>SQL<span class="small"> injection 18,5%</span></p>
+    </div>
+
+    <div id="sqli-vuln" class="step" data-x="23400" data-y="15000" data-rotate="0" data-scale="3">
+	<ul><li>La applicazione web permette di inserire codice malevolo all'interno di una query SQL allo scopo di sottrarre e alterare i dati del database</li></ul>
+    </div>
+
+    <div id="sqli-attack" class="step imagesized" data-x="23900" data-y="15500" data-rotate="90" data-scale="0.7">
+        <ul>
+	<li>I dati inseriti nei form vengono utilizzati per interrogare il database</li>
+	<li><img src="img/sqli1.png"/></li>
+	<li><img src="img/sqli2.png"/></li>
+	<li class="substep">La stringa composta seleziona tutti gli utenti con nome Emilio e password MyPassword </br>	
+	<pre>SELECT * FROM utenti WHERE nome='<span class="highlight">Emilio</span>' AND password='<span class="highlight">MyPassword</span>'</pre></li>
+	
+	  
+	</ul> 
+    </div>
+
+    <div id="sqli-attack2" class="step imagesized" data-x="23300" data-y="15500" data-rotate="90" data-scale="0.7">
+        <ul>
+	<li>Se i dati in input non sono correttamente sanificati, un attaccante può modificare la richiesta come desidera</li>
+	<li><img src="img/sqli3.png"/></li>
+	<li><pre>SELECT * FROM utenti WHERE nome='<span class="highlight">' OR '1'='1';//</span><span class="unlight">' AND password='MyPassword'</span></pre></li>
+        <li class="substep">Sono selezionati gli utenti quando il nome è una stringa vuota o quando è verificata l'asserzione '1'='1'</li>
+        <li class="substep">Poichè la seconda condizione è SEMPRE verificata, l'attaccante accede all'area protetta superando la richiesta di password<img src="img/sqli4.png"/></li>
+</li>
+	  
+	</ul> 
+    </div>
+
+    <div id="SQLi-disclosures" class="step" data-x="22800" data-y="15500" data-rotate="90" data-scale="0.7">
+	<p>SQL Injections disclosures</p>
+
+	<ul class="small">
+	  <li>2013-1453: Serialized SQLi nel Core Highlight Plugin &lt;=v2.5.8&&lt;=v3.0.2</li>
+	  <li>2012-1116: SQL Injection nel Core v1.7.x&&lt;=v2.5.2</li>
+	  <li>2010-4696: SQL Injection nel Core &lt;=v1.5.22</li>
+          <li>...</li>
+	</ul>
+    </div>
+
+    <div id="file-upload" class="step centered visible" data-x="25200" data-y="16100" data-rotate="0" data-scale="12">
+	<p><span class="small">file </span> upload<span class="small"> 5,3%</span></p>
+    </div>
+
+    <div id="file-upload-vuln" class="step" data-x="25200" data-y="17000" data-rotate="0" data-scale="3">
+	<p class="small">La applicazione web non limita correttamente il caricamento dei file, permettendo l'esecuzione di codice malevolo sul server</p>
+    </div>
+
+   <div id="file-upload-webtree" class="step" data-x="26200" data-y="18000" data-rotate="90" data-scale="1.5">
+	<p>Upload folder escape</p>
+	<ul>
+		<li>Evasione dalla directory consentita allo scopo di salvare il file in diverse cartelle dove è permessa l'esecuzione</li>
+		<li><pre>Upload come '/var/www/webroot/backdoor.php', '../../backdoor.php'</pre></li>
+	</ul>
+    </div>
+
+   <div id="file-upload-blacklist" class="step" data-x="25700" data-y="18000" data-rotate="90" data-scale="1.5">
+	<p>Extensions white-list bypass</p>
+	<ul>
+		<li>Bypass del filtro sulle estensioni del file aggiungendo punti, spazi, estensioni, maiuscole, ...</li>
+		<li><pre>Upload come 'backd.pHP', 'backd.php.', 'backd.jpg.php', 'backd.php  '</pre></li>
+	</ul>
+    </div>
+
+   <div id="file-upload-content-type" class="step" data-x="25200" data-y="18000" data-rotate="90" data-scale="1.5">
+	<p>Content-Type Filter bypass</p>
+	<ul>
+		<li>Bypass del filtro sul contenuto del file dichiarando un falso Content-Type nell'header HTTP della richiesta</li>
+		<li><pre>Upload 'backdoor.php' con HTTP header 'Content-Type: image/jpeg'</pre></li>
+	</ul>
+    </div>
+
+   <div id="file-upload-recognizer" class="step" data-x="24700" data-y="18000" data-rotate="90" data-scale="1.5">
+	<p>File type recognizer bypass</p>
+	<ul>
+		<li>Bypass dei file type recognizer sugli header dei file appendendo codice maligno all'interno di un file immagine con header corretto</li>
+		<li><pre>Appendere a un file GIF con header corretto del codice malevolo<pre>GIF89a&lt;?php echo("SYSTEM HACKED!");</pre></li>
+	</ul>
+    </div>
+
+    <div id="upload-disclosures" class="step" data-x="24150" data-y="18000" data-rotate="90" data-scale="1.5">
+	<p>File upload disclosures</p>
+
+	<ul class="small">
+	  <li>JSST-20130801: File upload nel Core &lt;=v2.5.13&lt;=v3.1.4</li>
+	  <li>2012-2902: File upload nel componente JCE &lt;=v2.1</li>
+	  <li>BID-57464: File upload nel componente Collector</li>
+          <li>...</li>
+	</ul>
+    </div>
+
+    <div id="altro" class="step centered visible" data-x="14500" data-y="17300" data-rotate="0" data-scale="15">
+	<p>Altro <span class="small"> 16,2%</span></p>
+    </div>
+
+    <!--<div id="overview" class="step" data-x="10000" data-y="10000" data-scale="50">  </div>-->
+
+    <div id="qualche-consiglio" class="step centered" data-x="10500" data-y="12000" data-rotate="180" data-scale="3"> 
+        <p>Qualche consiglio finale</p>
+    </div>
+
+    <div id="il-tuo-sito" class="step compact-title hidden" data-x="10350" data-y="14520" data-rotate="90" data-scale="12"> 
+        <p>Il tuo sito</p>
+	<p class="huge">non</p>
+        <p>resterà al sicuro da solo</p>
+    </div>
+
+    <div id="aggiorna" class="step" data-x="11700" data-y="15700" data-rotate="90" data-scale="3"> 
+         <p>Mantieni il tuo software aggiornato</p>
+	 <ul><li>Il software invecchia e diventa insicuro molto presto. Quando possibile aggiorna Joomla e i componenti aggiuntivi installati alla ultima versione.</li></ul>
+    </div>
+
+    <div id="aggiornati" class="step" data-x="10900" data-y="15700" data-rotate="90" data-scale="3"> 
+         <p>Segui lo sviluppo del software che usi</p>
+	 <ul>
+             <li>Mantieniti sempre aggiornato sui software che usi. I siti ufficiali, i forum e le mailing list della community ti aiutano a capire il funzionamento e ti tengono aggiornato su eventuali vulnerabilità.</li>
+         </ul>
+    </div>
+
+    <div id="provider" class="step" data-x="10100" data-y="15700" data-rotate="90" data-scale="3"> 
+         <p>Scegli hosting provider di qualità</p>
+	 <ul>
+             <li>Molte violazioni sono dovute a servizi di shared hosting che non isolano correttamente gli account degli utenti. Scegli il tuo hosting provider con cura basandoti sulle opinioni dei suoi utenti.</li>
+         </ul>
+    </div>
+
+    <div id="checklist" class="step" data-x="9300" data-y="15700" data-rotate="90" data-scale="3"> 
+         <p>Diventa amministratore</p>
+	 <ul>
+		<li>Impara le basi di sicurezza e amministrazione. Segui gli ottimi <a href="http://docs.joomla.org/Main_Page">tutorial</a> e la <a href="http://docs.joomla.org/Joomla_Administrators_Security_Checklist">security checklist</a> di Joomla per mantenere sano il tuo CMS e l'ambiente in cui risiede.</li>
+	</ul>
+    </div>
+
+    <div id="grazie" class="step hidden" data-x="10500" data-y="11000" data-rotate="180" data-scale="5"> 
+         <p class="centered">Grazie dell'attenzione :)</p>
+
+	 <ul>
+		<li>Mail: <a href="mailto:emilio.pinna@abinsula.com">emilio.pinna@abinsula.com</a></li>
+		<li>Company: <a href="http://www.abinsula.com/">Abinsula</a></li>
+		<li>Website: <a href="http://disse.cting.org/">http://disse.cting.org/</a></li>
+		<li>Sito realizzato con <a href="https://github.com/bartaz/impress.js/">impress.js</a></li>
+	</ul>
+
+    </div>
+
+</div>
+
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+    
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+
+</body>
+</html>
+
+

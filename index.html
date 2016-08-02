@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+    <div id="content">
+      <p>
+      	First, my introduction: I'm Emilio Pinna, <a class="myhighlight3" href="/tags/security/">IT security</a> researcher, <a class="myhighlight3" href="/apps/">developer</a>, <a class="myhighlight3" href="/tags/shell/">Linux</a> user and open source enthusiast for 15 years. Master Degreed at Computer Engineering at <a class="myhighlight3" href="http://www.polito.it">Politecnico di Torino</a>, currently working as penetration tester in the banking and financial industry.
+      </p>
+      <p>
+      	You can download the <a class="myhighlight1" title="code" href="https://github.com/epinna/">software</a> I wrote, the security <a class="myhighlight1" title="Advisories" href="https://github.com/epinna/advisories">advisories</a> I published and follow this blog posts rss <a class="myhighlight1" href="http://feeds.feedburner.com/Dissecting">feed</a> to keep you up to date with my works. I'll try to publish techical posts avoiding vague informations and personal digressions: I'll save you from these pains keeping a practical tone.
+      </p>
+      <p>
+      	So, <strong>Less Talk More Code</strong>.
+      </p>
+      <br/> 
+      <dl class="archives">
+            {% for post in site.posts %}
+              {% assign currentdate = post.date | date: "%Y" %}
+              {% if currentdate != date %}
+                  <dt>{{ post.date | date: '%Y %b %d' }}</dt>
+                  <dd>
+                  <a href="{{ post.url }}">{{ post.title }}</a>
+                  {% if post.tags %}<small><span>&raquo;</span> 
+                    {% for tag in post.tags %}
+                      {{ tag }}
+                      {% if forloop.last == false %}, {% endif %}
+                    {% endfor %}</small>
+                  {% endif %}</dd>
+              {% endif %}
+            {% endfor %}
+      </dl>
+    </div>
+    
+    <div id="footer">
+        <p id="licence">
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a> <br/>{{ site.time | date: '%y' }} &ndash;
+        </p>
+    </div>
+</div>
+
+<script src="{{ site.url }}/assets/js/jquery.dissecting.text-animations.js"></script>

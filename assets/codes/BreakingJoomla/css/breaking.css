@@ -1,0 +1,390 @@
+@font-face {
+    font-family: 'LeagueGothicRegular';
+    src: url('../fonts/league_gothic-webfont.eot');
+    src: url('../fonts/league_gothic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/league_gothic-webfont.woff') format('woff'),
+         url('../fonts/league_gothic-webfont.ttf') format('truetype'),
+         url('../fonts/league_gothic-webfont.svg#LeagueGothicRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+    font-size: 50px;
+    line-height: 50px;
+    text-transform: none;
+}
+
+pre {
+  transform:none;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  color: black;
+  font-family: ‘Lucida Console’, Monaco, monospace;
+}
+
+.highlight {
+  color: rgb(100, 135, 195);
+  font-size: 20px;
+}
+
+.unlight {
+  color: #ccc;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    font-family: 'LeagueGothicRegular', sans-serif;
+    min-height: 740px;
+
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#eee), to(#fff));
+    background: -webkit-radial-gradient(#eee, #fff);
+    background:    -moz-radial-gradient(#eee, #fff);
+    background:     -ms-radial-gradient(#eee, #fff);
+    background:      -o-radial-gradient(#eee, #fff);
+    background:         radial-gradient(#eee, #fff);
+    color: #2f2f2f;
+    text-transform: uppercase;
+}
+
+b, strong { font-weight: bold }
+i, em { font-style: italic }
+a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0.1em;
+    background: #ccc;
+    border-radius: 0.2em;
+
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+a:hover,
+a:focus {
+    background: #aaa;
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
+    color: #fff;
+}
+
+
+.fallback-message {
+    font-family: sans-serif;
+    line-height: 1.3;
+
+    width: 780px;
+    padding: 10px 10px 0;
+    margin: 20px auto;
+
+    border: 1px solid #E4C652;
+    border-radius: 10px;
+    background: #EEDC94;
+}
+
+.fallback-message p {
+    margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+    display: none;
+}
+
+
+.step {
+    position: relative;
+    width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-family: 'LeagueGothicRegular', sans-serif;
+    font-size: 70px;
+    line-height: 1.5;
+}
+
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0.05;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
+
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+    text-align: right;
+}
+.big {
+    font-size: 100px;
+}
+.small {
+    font-size: 40px;
+}
+.tiny {
+    font-size: 20px;
+    font-weight:lighter;
+}
+.percent {
+    font-size: 16px;
+    font-weight:lighter;	
+}
+.huge {
+    font-size: 350px;
+    line-height: 297px;
+}
+
+.not-so-huge {
+    font-size: 270px;
+    line-height: 220px;
+}
+
+#breaking, .big {
+    text-align: left;
+    font-size: 117px; 
+    line-height: 1;
+}
+
+/* Biz Card */
+.slide q {
+    display: block;
+    font-size: 120px;
+    line-height: 180px;
+    margin-top: 40px;
+}
+.slide q strong {
+    white-space: nowrap;
+}
+
+.lower {
+    text-transform: lowercase;
+}
+.biz-card .lower {
+    display: block;
+    float: left;
+    margin-top: 150px;
+}
+.right.map {
+    width: 300px;
+    margin-top: 120px;
+}
+/* Basics */
+#basics {
+    width: 463px;
+}
+#basics .big {
+    width: auto;
+}
+/* Content */
+.elephant {
+    font-size: 96px;
+}
+/* Control */
+#control .huge {
+    font-size: 247px;
+    line-height: 223px;
+    text-align: center;
+}
+#control .big {
+    width: auto;
+}
+
+#overview { display: none }
+
+.impress-on-overview .step {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.impress-enabled          { pointer-events: none }
+.impress-enabled #impress { pointer-events: auto }
+
+.abinsula {
+    vertical-align:bottom;
+}
+
+
+/* give all steps a light opacity by default */
+.impress-enabled .step {
+  opacity: 0.1;
+  -webkit-transition: opacity 1s;
+  -moz-transition:    opacity 1s;
+  -ms-transition:     opacity 1s;
+  -o-transition:      opacity 1s;
+  transition:         opacity 1s;
+}
+
+.impress-enabled .hidden {
+  opacity: 0;
+} 
+
+/* bring steps up to full opacity when active */
+.impress-enabled .step.active { 
+  opacity: 1;
+}
+
+
+/*
+  This selector will grab all substeps in a browser that
+  is impress.js compatible, and set their opacity to zero.
+  This also sets up any property change to be transitioned
+  over 1 second
+*/
+.impress-enabled .substep {
+  opacity: 0;
+  -webkit-transition: all 1s;
+  -moz-transition:    all 1s;
+  -ms-transition:     all 1s;
+  -o-transition:      all 1s;
+  transition:         all 1s;  
+}
+
+/*
+  if a substep gets set to active it will get an
+  opacity of 1, transitioned over 1 second by the 
+  previous selector 
+*/
+.impress-enabled .substep.active {
+  opacity: 1;
+}
+
+/*
+  when a substep has focus it is 'present'
+  so we add some color to make it all fancy
+*/
+.impress-enabled .substep.present { 
+  color: rgb(100, 135, 195);
+}
+
+#cracker-def {
+	font-family:"Courier New", Courier, monospace;
+	font-size: 50px;
+	line-height: 40px;
+	text-transform: none;
+	text-align: justify;
+	background-image:url('../img/blackhat.png');
+	background-repeat:no-repeat;
+	background-position:0px 0px; 
+	padding-left:350px;
+}
+
+.descr {
+	font-size: 30px;
+	line-height: 25px;
+	padding-top: 40px;
+}
+
+.profili img {
+	width: 70px;
+	height: 70px;	
+	vertical-align: -7px;
+}
+
+.profili p {
+	margin-top: 50px;
+}
+
+ol, ul {
+    list-style: none;
+    font-size: 45px;
+    line-height: 45px;
+    text-transform: none;
+}
+
+
+#compromessi {
+    width: 800px;
+    height: 300px;
+    text-transform: none;
+}
+
+.centered {
+    text-align: center;
+}
+
+.justified {
+    text-align: justify;
+}
+
+
+#me img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+.imagesized img {
+	width: 100%;
+}
+
+.imagereduced img {
+	width: 50%;
+}
+
+
+.impress-enabled .visible {
+	opacity: 0.6;
+}
+
+.compact-title {
+	line-height: 0.5;
+}
+
+.uncapitalize {
+  text-transform: none;
+}
+
+
