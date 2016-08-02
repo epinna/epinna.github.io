@@ -1,6 +1,7 @@
 # Blog settings
 permalink: /:year/:month/:day/:slug
 
+url: http://disse.cting.org/
 
 # My variables
 name: Dissecting
