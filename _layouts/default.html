@@ -14,8 +14,8 @@
 
   {% if site.feed %}<link rel="alternate" href="http://feeds.feedburner.com/Dissecting">{% endif %}
 
-  <link rel="stylesheet" href="{{ site.url }}/assets/css/screen.css" type="text/css">
-  {% if site.pygmentize %}<link rel="stylesheet" href="{{ site.url }}/assets/css/pygments.css" type="text/css">{% endif %}
+  <link rel="stylesheet" href="/assets/css/screen.css" type="text/css">
+  <link rel="stylesheet" href="/assets/css/pygments.css" type="text/css">
 
       <script type="text/javascript">
           var _gaq = _gaq || [];
@@ -59,8 +59,6 @@
     {% if site.google_verification %}
         <meta name="google-site-verification" content="{{ site.google_verify }}">
     {% endif %}
-    
-    {% feed_meta %}
 
 </head>
 
