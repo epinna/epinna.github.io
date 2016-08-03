@@ -63,13 +63,15 @@ The vulnerability does not affect Nunjucks itself, but is introduced when the us
 Sandbox escape
 --------------
 
-As many other template engines, Nunjucks template code runs in a sandboxed environment. Any global object is stripped out from the environment, to limit the surface which could be used to break out of the sandbox and execute arbitrary JavaScript. For example, calling the global object `console` raises an undefined exception.
+As many other template engines, Nunjucks template code runs in a sandboxed environment. Any global object is stripped out from the environment, to limit the surface which could be used to break out of the sandbox and execute arbitrary JavaScript. You can use Tplmap `--tpl-shell` option to inspect the sandbox surface.
+
+Calling the global object `console` from within the template raises an undefined exception.
 
 ```javascript
 {{console.log(1)}}
 
-Template render error: (unknown path)
-  Error: Unable to call `console["log"]`, which is undefined or falsey
+// Template render error: (unknown path)
+//  Error: Unable to call `console["log"]`, which is undefined or falsey
 ```
 
 Luckily for the attacker the documentation describes three utility functions [range, cycler, and joiner](https://mozilla.github.io/nunjucks/templating.html#global-functions) which are the only callables from within the template.
@@ -77,16 +79,17 @@ Luckily for the attacker the documentation describes three utility functions [ra
 The `constructor` property of any function is the [Function constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) which allows to create a new function starting from the body string. 
 
 ```javascript
-{{range.constructor("console.log(123)")()}}'
+{{range.constructor("console.log(123)")()}}
+// 123
 ```
 
-The code above is correctly evaluated and it prints `123` in the logs. The operating system access is not straightforward  since `require()` cannot be used to import standard modules without triggering an exception.
+The code above is correctly evaluated. The operating system access instead is not straightforward since `require()` cannot be used to import standard modules without triggering an exception.
 
 ```javascript
 {{range.constructor("return require('fs')")()}}
 
-Template render error: (unknown path)
- Error: Unable to call `range["constructor"]`, which is undefined or falsey
+//Template render error: (unknown path)
+//  ReferenceError: require is not defined
 ```
 
 The missing `require`constraint can be bypassed using `global.process.mainModule.require`. In the snippet below, the module `fs` is imported and printed.
