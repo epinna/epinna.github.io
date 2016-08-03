@@ -3,7 +3,7 @@ comments: true
 date: 2016-08-02 12:58:30
 layout: post
 slug: 2016-08-02-sandbox-break-out-nunjucks-template-engine
-title: Sandbox Breakout - A view On The Nunjucks Template Engine
+title: Sandbox Breakout - A view Of The Nunjucks Template Engine
 categories:
 - Security
 - Vulnerabilities
